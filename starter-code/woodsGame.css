@@ -1,5 +1,30 @@
+body{
+  background-image: url('../images/background2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1{
+color: #470757;
+font-family: Cambria, Georgia, serif;
+font-size: 60px;
+}
+
+#introduction{
+  color: #010314;
+  text-align: justify;
+  text-justify: inter-word;
+}
+h4{
+  color: #010314;
+  
+}
+ol{
+  color: #010314;
+}
 
 #ctx{
- background-image: url('images/woodsbackground.png');
- background-size: contain;
+ background-image: url('../images/woodsbackground.png');
+ background-repeat: no-repeat;
+ background-size: cover;
 }
