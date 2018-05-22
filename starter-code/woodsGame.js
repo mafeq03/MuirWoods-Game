@@ -1,3 +1,7 @@
+//hides game before it starts
+// window.onload = function(){
+// document.getElementById("ctx").style.display = 'none';
+// }
 var ctx = document.getElementById("ctx").getContext("2d");
 ctx.font = "30px Arial";
 //set dimensions of canvas
@@ -79,6 +83,13 @@ document.onkeyup = function(event) {
     player.goRight = false;
   }
 };
+// document.getElementById("start-button").onclick = function(){
+//   loadGame();
+// }
+
+// function loadGame(){
+  
+// }
 //function to update canvas while game takes place
 update = function() {
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
@@ -103,7 +114,9 @@ update = function() {
     for (var key2 in lumberjacks) {
        var isColliding = protectiveForces[key].theCollision(lumberjacks[key2]);
        if(isColliding){
+        score += 500;
         delete lumberjacks[key2];
+        
         break;
          }           
     }
@@ -111,6 +124,7 @@ update = function() {
 //loop to generate plants in canvas
   for (var key in plants) {
     plants[key].update();
+    plants[key].timer++;
     var isColliding = player.theCollision(plants[key]);
     if (isColliding) {
       // console.log('Colliding');
@@ -118,10 +132,12 @@ update = function() {
        if (plants[key].category === "harmful") {
         player.hp -= 10;
       } else if (plants[key].category === "beneficial") {
-        player.hp += 5;
+        player.hp += 15;
       } else if (plants[key].category === "powerboost") {
         player.atkSpd += 3;
         }
+      delete plants[key];
+    } else if (plants[key].timer > 75) {
       delete plants[key];
     }
   }

@@ -8,18 +8,26 @@ var plants = {};
 var protectiveForces = {};
 //constructor to create character with all traits and functions as methods
 Player = function() {
-  var character = Actor("player", "myId", 50, 40, 30, 5, 20, 20, Img.player, 100, 1);
+  var character = Actor("player", "myId", 20, 20, 30, 5, 20, 20, Img.player, 100, 1);
 //updates position of character
   character.updatePosition = function() {
-    if (character.goRight) character.x += 10;
-    if (character.goLeft) character.x -= 10;
-    if (character.goDown) character.y += 10;
-    if (character.goUp) character.y -= 10;
+    if (character.goRight) 
+    character.x += 10;
+    if (character.goLeft) 
+    character.x -= 10;
+    if (character.goDown) 
+    character.y += 10;
+    if (character.goUp) 
+    character.y -= 10;
     //verifies position of player and stops it from going outside of canvas
-    if (character.x < character.width / 2) character.x = character.width / 2;
-    if (character.x > WIDTH - character.width / 2) character.x = WIDTH - character.width / 2;
-    if (character.y < character.height / 2) character.y = character.height / 2;
-    if (character.y > HEIGHT - character.height / 2) character.y = HEIGHT - character.height / 2;
+    if (character.x < character.width / 2) 
+    character.x = character.width / 2;
+    if (character.x > WIDTH - character.width / 2) 
+    character.x = WIDTH - character.width / 2;
+    if (character.y < character.height / 2) 
+    character.y = character.height / 2;
+    if (character.y > HEIGHT - character.height / 2) 
+    character.y = HEIGHT - character.height / 2;
   };
   //defines the character's position before pressing the keys for commands
   character.goDown = false;
@@ -161,7 +169,9 @@ generateLumberjacks = function() {
 //defines the specific properties for the plants in woods
 Plant = function(id, x, y, spdX, spdY, width, height, category, img) {
   var character = Entity("Plant", id, x, y, spdX, spdY, width, height, img);
- //determines plants category 
+  //timer used to clear plants from canvas otherwise over populate
+  character.timer = 0;
+  //determines plants category 
   character.category = category;
   //will add generated plants to plants object
   plants[id] = character;
@@ -177,6 +187,7 @@ generatePlant = function() {
   var id = Math.random();
   var spdX = 0;
   var spdY = 0;
+  
   //one third of plants are harmful
   //one third add to health
   //one third of plants boost attack power by 3
