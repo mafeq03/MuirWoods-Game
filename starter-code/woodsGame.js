@@ -8,7 +8,7 @@ ctx.font = "30px Arial";
 var HEIGHT = 600;
 var WIDTH = 900;
 //counts frames in the game
-var frameCount = 0;
+var frameCount = 0; 
 //score kept by the frames in canvas
 var score = 0;
 
@@ -27,6 +27,12 @@ Img.power.src = "../images/powerboost.png";
 Img.force = new Image();
 Img.force.src = "../images/heart_.png";
 
+let resizeCanvas = function(){
+WIDTH = window.innerW
+}
+window.addEventListener('resize',function(){
+
+});
 
 // //launches force used by player by left clicking
 // document.onclick = function(mouse) {

@@ -8,7 +8,7 @@ var plants = {};
 var protectiveForces = {};
 //constructor to create character with all traits and functions as methods
 Player = function() {
-  var character = Actor("player", "myId", 20, 20, 30, 5, 20, 20, Img.player, 100, 1);
+  var character = Actor("player", "myId", 20, 400, 30, 5, 20, 20, Img.player, 100, 1);
 //updates position of character
   character.updatePosition = function() {
     if (character.goRight) 

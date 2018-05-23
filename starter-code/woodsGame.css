@@ -1,30 +1,70 @@
-body{
+body {
   background-image: url('../images/background2.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
+  margin: 0;
+  height: 100%;
 }
 
-h1{
-color: #470757;
-font-family: Cambria, Georgia, serif;
-font-size: 60px;
+.header {
+  background-color: #ebe5e5;
+  border: 0;
+  padding: 0;
+  align-content: center;
+  }
+
+h1 {
+  color: #470757;
+  font-family: Cambria, Georgia, serif;
+  font-size: 60px;
+  border: 0;
+  padding: 0;
+  margin: auto;
+  }
+
+.container1 {
+  display: flex;
+  flex-direction: column;
 }
 
-#introduction{
+.box1 {
+  flex: 1;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.box2 {
+  flex: 1;
+  align-items: center;
+}
+
+#introduction {
   color: #010314;
   text-align: justify;
   text-justify: inter-word;
 }
-h4{
-  color: #010314;
-  
-}
-ol{
+
+h4 {
   color: #010314;
 }
 
-#ctx{
- background-image: url('../images/woodsbackground.png');
- background-repeat: no-repeat;
- background-size: cover;
+ol {
+  color: #010314;
+}
+
+#start {
+  background-color: #0a970a;
+  color: #ffff;
+  font-size: 20px;
+  text-transform: uppercase;
+  height: 50px;
+  width: 175px;
+  border-radius: 5px;
+}
+
+#ctx {
+  background-image: url('../images/woodsbackground.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
