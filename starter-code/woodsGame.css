@@ -3,6 +3,8 @@ body {
   background-repeat: no-repeat;
   margin: 0;
   height: 100%;
+  font-family: 'Spectral', serif;
+
 }
 
 .header {
@@ -19,6 +21,8 @@ h1 {
   border: 0;
   padding: 0;
   margin: auto;
+  font-family: 'Spectral', serif;
+
   }
 
 .container1 {
@@ -60,11 +64,43 @@ ol {
   text-transform: uppercase;
   height: 50px;
   width: 175px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 #ctx {
   background-image: url('../images/woodsbackground.png');
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 15px;
 }
+
+#GameOver{
+  position: absolute;
+  visibility: hidden;
+  width: 900px;
+  height: 600px;
+  background-color: #ebe5e5;
+  border-radius: 15px;
+  flex-direction: column;
+ }
+
+  #GameOver h1{
+    font-family: 'Spectral', serif;
+    align-content: center;
+    text-align: center;
+    padding: 180px;
+      }
+
+  .over{
+    font-size: 82px;
+  }
+
+  #restart{
+    background-color: #2c41b9;
+    color: #ffff;
+    font-size: 20px;
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+       }
+

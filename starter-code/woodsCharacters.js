@@ -1,10 +1,7 @@
-//player in game
+//global varibales 
 var player;
-//obstacles - opponents
 var lumberjacks = {};
-//plants collected by player
 var plants = {};
-//force used to fight
 var protectiveForces = {};
 //constructor to create character with all traits and functions as methods
 Player = function() {
@@ -128,7 +125,7 @@ Actor = function(type, id, x, y, spdX, spdY, width, height, img, hp, atkSpd) {
       generateForce(character);
     }
   };
-  //draws special attack with right click of mouse
+  //draws special attack when pressing 'B' - originally activated with right click
   character.releaseSpecialAttack= function() {
     if (character.attackCounter > 50) {
       //every 1 sec
@@ -146,7 +143,7 @@ Actor = function(type, id, x, y, spdX, spdY, width, height, img, hp, atkSpd) {
   return character;
 };
 
-//conatructor for the obstacles/lumberjack
+//constructor for the obstacles/lumberjack
 Lumberjack = function(id, x, y, spdX, spdY, width, height) {
   var character = Actor("Lumberjack", id, x, y, spdX, spdY, width, height, Img.lumberjack, 10, 1);
   //generated lumberjacks will be added to the object lumberjacks

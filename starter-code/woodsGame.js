@@ -1,9 +1,16 @@
-//hides game before it starts
+// // hides game before it starts
 // window.onload = function(){
 // document.getElementById("ctx").style.display = 'none';
 // }
+
+
+// document.getElementById("start").onclick = function(){
+//   update();
+// }
+
 var ctx = document.getElementById("ctx").getContext("2d");
 ctx.font = "30px Arial";
+ctx.fillStyle = "white";
 //set dimensions of canvas
 var HEIGHT = 600;
 var WIDTH = 900;
@@ -11,6 +18,10 @@ var WIDTH = 900;
 var frameCount = 0; 
 //score kept by the frames in canvas
 var score = 0;
+//div that contains Game Over screen
+var gameOverMenu = document.getElementById("GameOver");
+//button to restart Game
+var restartButton = document.getElementById("restart");
 
 //all images needed
 var Img = {};
@@ -26,13 +37,6 @@ Img.power = new Image();
 Img.power.src = "../images/powerboost.png";
 Img.force = new Image();
 Img.force.src = "../images/heart_.png";
-
-let resizeCanvas = function(){
-WIDTH = window.innerW
-}
-window.addEventListener('resize',function(){
-
-});
 
 // //launches force used by player by left clicking
 // document.onclick = function(mouse) {
@@ -89,13 +93,11 @@ document.onkeyup = function(event) {
     player.goRight = false;
   }
 };
-// document.getElementById("start-button").onclick = function(){
-//   loadGame();
-// }
+//function to restart game when clicking restart button
+function restart(){
 
-// function loadGame(){
-  
-// }
+}
+
 //function to update canvas while game takes place
 update = function() {
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
@@ -160,8 +162,12 @@ update = function() {
   }
   //condition that stops game, game ends when health equals 0
   if (player.hp <= 0) {
-    alert("You didn't make it :(");
-    startNewGame();
+    window.onload = function(){
+      document.getElementById("ctx").style.display = 'none';
+      }
+    showMenu(gameOverMenu)
+    // alert("You didn't make it :(");
+    // startNewGame();
   }
   player.update();
   //health and scor are written within the canvas
@@ -169,7 +175,7 @@ update = function() {
   ctx.fillText("Score: " + score, 200, 30);
 };
 // function to load new game
-startNewGame = function() {
+  startNewGame = function() {
   player.hp = 100;
   frameCount = 0;
   score = 0;
@@ -185,3 +191,14 @@ player = Player();
 startNewGame();
 //setInterval in ms - repeats the drawing of the function in the canvas
 setInterval(update, 40);
+
+//function to display Game Over Screen
+function displayMenu(menu){
+  menu.style.visibility = "visible";
+  }
+
+function showMenu(){
+  if(player.hp <= 0){
+    displayMenu(gameOverMenu);
+  }
+}
