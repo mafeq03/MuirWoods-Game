@@ -1,12 +1,7 @@
-// // hides game before it starts
-// window.onload = function(){
-// document.getElementById("ctx").style.display = 'none';
-// }
-
-
-// document.getElementById("start").onclick = function(){
-//   update();
-// }
+//hides game before it starts
+window.onload = function() {
+  document.getElementById("ctx").style.display = "none";
+};
 
 var ctx = document.getElementById("ctx").getContext("2d");
 ctx.font = "30px Arial";
@@ -15,9 +10,10 @@ ctx.fillStyle = "white";
 var HEIGHT = 600;
 var WIDTH = 900;
 //counts frames in the game
-var frameCount = 0; 
+var frameCount = 0;
 //score kept by the frames in canvas
 var score = 0;
+
 //div that contains Game Over screen
 var gameOverMenu = document.getElementById("GameOver");
 //button to restart Game
@@ -28,7 +24,7 @@ var Img = {};
 Img.player = new Image();
 Img.player.src = "../images/hippie.png";
 Img.lumberjack = new Image();
-Img.lumberjack.src = "../images/lumberjack_.png"
+Img.lumberjack.src = "../images/lumberjack_.png";
 Img.plant1 = new Image();
 Img.plant1.src = "../images/powerdecrease.png";
 Img.plant2 = new Image();
@@ -51,7 +47,7 @@ Img.force.src = "../images/heart_.png";
 //  };
 // //it gives interactivity to the player by using the mouse
 // document.onmousemove = function(mouse) {
-//   //determines exact position of the mouse in canvas 
+//   //determines exact position of the mouse in canvas
 //   //getBoundingClientRect()is a method that returns the positiion and size of an element relative to the viewport
 //   var mouseX = mouse.clientX - document.getElementById("ctx").getBoundingClientRect().left;
 //   var mouseY = mouse.clientY - document.getElementById("ctx").getBoundingClientRect().top;
@@ -65,10 +61,10 @@ Img.force.src = "../images/heart_.png";
 // };
 //event that gives command to keys in keyboard for player to move with it
 document.onkeydown = function(event) {
-  if (event.keyCode === 32){
+  if (event.keyCode === 32) {
     player.releaseAttack();
   }
-  if (event.keyCode === 66){
+  if (event.keyCode === 66) {
     player.releaseSpecialAttack();
   }
   if (event.keyCode === 40) {
@@ -94,23 +90,28 @@ document.onkeyup = function(event) {
   }
 };
 //function to restart game when clicking restart button
-function restart(){
-
+function restart() {
+  hideMenu(gameOverMenu);
+  player = Player();
+  startNewGame();
 }
+
+document.getElementById("restart").onclick = function(){
+  restart();
+} 
+
 
 //function to update canvas while game takes place
 update = function() {
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
   frameCount++;
-  //score is increased 
+  //score is increased
   score++;
   //every 2 secs a lumberjack is generated
-  if (frameCount % 50 === 0)
-     generateLumberjacks();
+  if (frameCount % 50 === 0) generateLumberjacks();
   //every 3 secs a plant is generated randomly
-  if (frameCount % 75 === 0)
-      generatePlant();
- //loop to create attack forces, they are removed upon collision
+  if (frameCount % 75 === 0) generatePlant();
+  //loop to create attack forces, they are removed upon collision
   for (var key in protectiveForces) {
     protectiveForces[key].update();
     protectiveForces[key].timer++;
@@ -118,18 +119,17 @@ update = function() {
       delete protectiveForces[key];
       continue;
     }
-    //
+    //function to delete lumberjacks when they collide with hearts
+    //each adds 500pts to score
     for (var key2 in lumberjacks) {
-       var isColliding = protectiveForces[key].theCollision(lumberjacks[key2]);
-       if(isColliding){
-        score += 500;
-        delete lumberjacks[key2];
-        
+      var isColliding = protectiveForces[key].theCollision(lumberjacks[key2]);
+      if (isColliding) {
+         delete lumberjacks[key2];
         break;
-         }           
+      }
     }
-     }
-//loop to generate plants in canvas
+  }
+  //loop to generate plants in canvas
   for (var key in plants) {
     plants[key].update();
     plants[key].timer++;
@@ -137,37 +137,33 @@ update = function() {
     if (isColliding) {
       // console.log('Colliding');
       //plants that are harmful decrease helath by 10, beneficial add health by 5, powerboost adds attack power by 3
-       if (plants[key].category === "harmful") {
+      if (plants[key].category === "harmful") {
         player.hp -= 10;
       } else if (plants[key].category === "beneficial") {
         player.hp += 15;
       } else if (plants[key].category === "powerboost") {
         player.atkSpd += 3;
-        }
+      }
       delete plants[key];
     } else if (plants[key].timer > 75) {
       delete plants[key];
     }
   }
-
-//loop to generate lumberjacks in game
+  //loop to generate lumberjacks in game
   for (var key in lumberjacks) {
     lumberjacks[key].update();
     // lumberjacks[key].releaseAttack();
-//when player and enemy collide 10 points are decreased
+    //when player and enemy collide 5 points are decreased
     var isColliding = player.theCollision(lumberjacks[key]);
     if (isColliding) {
-      player.hp = player.hp - 10;
+      player.hp = player.hp - 5;
     }
   }
   //condition that stops game, game ends when health equals 0
   if (player.hp <= 0) {
-    window.onload = function(){
-      document.getElementById("ctx").style.display = 'none';
-      }
-    showMenu(gameOverMenu)
+    showMenu(gameOverMenu);
     // alert("You didn't make it :(");
-    // startNewGame();
+    startNewGame();
   }
   player.update();
   //health and scor are written within the canvas
@@ -175,7 +171,7 @@ update = function() {
   ctx.fillText("Score: " + score, 200, 30);
 };
 // function to load new game
-  startNewGame = function() {
+startNewGame = function() {
   player.hp = 100;
   frameCount = 0;
   score = 0;
@@ -186,19 +182,25 @@ update = function() {
   generateLumberjacks();
   generateLumberjacks();
 };
-//player is called as soon as new game is generated
+
+document.getElementById("start").onclick = function() {
+ //player is called as soon as new game is generated
 player = Player();
 startNewGame();
-//setInterval in ms - repeats the drawing of the function in the canvas
+document.getElementById("ctx").style.display = "block";
+};
 setInterval(update, 40);
 
 //function to display Game Over Screen
-function displayMenu(menu){
+function displayMenu(menu) {
   menu.style.visibility = "visible";
-  }
+}
+function hideMenu(menu) {
+  menu.style.visibility = "hidden";
+}
 
-function showMenu(){
-  if(player.hp <= 0){
+function showMenu() {
+  if (player.hp <= 0) {
     displayMenu(gameOverMenu);
   }
 }

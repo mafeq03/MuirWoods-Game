@@ -5,7 +5,7 @@ var plants = {};
 var protectiveForces = {};
 //constructor to create character with all traits and functions as methods
 Player = function() {
-  var character = Actor("player", "myId", 20, 400, 30, 5, 20, 20, Img.player, 100, 1);
+  var character = Actor("player", "myId", 20, 400, 30, 5, 60, 100, Img.player, 100, 1);
 //updates position of character
   character.updatePosition = function() {
     if (character.goRight) 
@@ -16,12 +16,13 @@ Player = function() {
     character.y += 10;
     if (character.goUp) 
     character.y -= 10;
+
     //verifies position of player and stops it from going outside of canvas
     if (character.x < character.width / 2) 
     character.x = character.width / 2;
     if (character.x > WIDTH - character.width / 2) 
     character.x = WIDTH - character.width / 2;
-    if (character.y < character.height / 2) 
+    if (character.y < character.height/2) 
     character.y = character.height / 2;
     if (character.y > HEIGHT - character.height / 2) 
     character.y = HEIGHT - character.height / 2;
@@ -63,7 +64,7 @@ Entity = function(type, id, x, y, spdX, spdY, width, height, img) {
   };
 
  //function that returns distance between player and obstacle
-  character.getDistance = function(entity2) {
+    character.getDistance = function(entity2) {
     var vx = character.x - entity2.x;
     var vy = character.y - entity2.y;
     //returns square root of values/coordinates = distance
@@ -109,7 +110,7 @@ Actor = function(type, id, x, y, spdX, spdY, width, height, img, hp, atkSpd) {
   //counter for the attacks done by the player/lumberjack
   character.attackCounter = 0;
   //angle at where the force is being released/drawn
-  character.aimAngle = 0;
+  character.aimAngle = -15;
 
   var super_update = character.update;
   character.update = function() {
@@ -156,8 +157,8 @@ generateLumberjacks = function() {
   //the results are multiplied by the canvas' dimensions
   var x = Math.random() * WIDTH;
   var y = Math.random() * HEIGHT;
-  var height = 10 + Math.random() * 30; //between 10 and 40
-  var width = 10 + Math.random() * 30;
+  var height = 10 + Math.random() * 20; //between 10 and 30
+  var width = 10 + Math.random() * 20;
   var id = Math.random();
   var spdX = 5 + Math.random() * 5;
   var spdY = 5 + Math.random() * 5;
@@ -216,8 +217,8 @@ generateForce = function(actor, aimOverwrite) {
   //bullets are drawn according to the position of the character
   var x = actor.x;
   var y = actor.y;
-  var height = 10;
-  var width = 10;
+  var height = 20;
+  var width = 20;
   var id = Math.random();
 //angle is updated when the mouse moves
 //when angle is undefined it will be overwriten by the current position of the mouse
@@ -226,8 +227,8 @@ generateForce = function(actor, aimOverwrite) {
   else angle = actor.aimAngle;
 //sin and cos used to determine the speed of coordinates according to the angle, result is given in radian
 //result is divided by 180 and multiplied by PI to obtain degrees
-  var spdX = Math.cos(angle / 180 * Math.PI) * 5;
-  var spdY = Math.sin(angle / 180 * Math.PI) * 5;
+  var spdX = Math.cos(angle / 180 * Math.PI) * 15;
+  var spdY = Math.sin(angle / 180 * Math.PI) * 15;
   Force(id, x, y, spdX, spdY, width, height);
 };
 //tests collision between two entities
