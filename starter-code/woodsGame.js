@@ -24,21 +24,21 @@ var infoDiv = document.getElementById("intro");
 //all images needed
 var Img = {};
 Img.player = new Image();
-Img.player.src = "../images/hippie.png";
+Img.player.src = "images/hippie.png";
 Img.lumberjack = new Image();
-Img.lumberjack.src = "../images/lumberjack_.png";
+Img.lumberjack.src = "images/lumberjack_.png";
 Img.plant1 = new Image();
-Img.plant1.src = "../images/powerdecrease.png";
+Img.plant1.src = "images/powerdecrease.png";
 Img.plant2 = new Image();
-Img.plant2.src = "../images/healthincrease.png";
+Img.plant2.src = "images/healthincrease.png";
 Img.power = new Image();
-Img.power.src = "../images/powerboost.png";
+Img.power.src = "images/powerboost.png";
 Img.force = new Image();
-Img.force.src = "../images/heart_.png";
+Img.force.src = "images/heart_.png";
 
 //audio used
-var woods = new Audio("../audio/woods.wav");
-var hearts = new Audio("../audio/collide.wav");
+var woods = new Audio("audio/woods.wav");
+var hearts = new Audio("audio/collide.wav");
 
 // //launches force used by player by left clicking
 // document.onclick = function(mouse) {
