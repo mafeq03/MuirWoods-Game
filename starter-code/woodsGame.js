@@ -18,6 +18,8 @@ var score = 0;
 var gameOverMenu = document.getElementById("GameOver");
 //button to restart Game
 var restartButton = document.getElementById("restart");
+//div that contains introduction and instructions
+var infoDiv = document.getElementById("intro");
 
 //all images needed
 var Img = {};
@@ -95,11 +97,9 @@ function restart() {
   player = Player();
   startNewGame();
 }
-
 document.getElementById("restart").onclick = function(){
   restart();
 } 
-
 
 //function to update canvas while game takes place
 update = function() {
@@ -163,11 +163,10 @@ update = function() {
   if (player.hp <= 0) {
     showMenu(gameOverMenu);
     // alert("You didn't make it :(");
-    startNewGame();
-  }
+    }
   player.update();
   //health and scor are written within the canvas
-  ctx.fillText(player.hp + " Hp", 0, 30);
+  ctx.fillText("Health: " + player.hp +"%", 0, 30);
   ctx.fillText("Score: " + score, 200, 30);
 };
 // function to load new game
@@ -188,6 +187,7 @@ document.getElementById("start").onclick = function() {
 player = Player();
 startNewGame();
 document.getElementById("ctx").style.display = "block";
+hideMenu(infoDiv);
 };
 setInterval(update, 40);
 
@@ -204,3 +204,4 @@ function showMenu() {
     displayMenu(gameOverMenu);
   }
 }
+

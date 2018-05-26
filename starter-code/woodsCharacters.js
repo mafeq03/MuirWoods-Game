@@ -5,7 +5,7 @@ var plants = {};
 var protectiveForces = {};
 //constructor to create character with all traits and functions as methods
 Player = function() {
-  var character = Actor("player", "myId", 20, 400, 30, 5, 60, 100, Img.player, 100, 1);
+  var character = Actor("player", "myId", 20, 400, 30, 5, 70, 140, Img.player, 100, 1);
 //updates position of character
   character.updatePosition = function() {
     if (character.goRight) 
@@ -157,8 +157,8 @@ generateLumberjacks = function() {
   //the results are multiplied by the canvas' dimensions
   var x = Math.random() * WIDTH;
   var y = Math.random() * HEIGHT;
-  var height = 10 + Math.random() * 20; //between 10 and 30
-  var width = 10 + Math.random() * 20;
+  var height = /*10 + Math.random() * */20; //between 10 and 30
+  var width = /*10 + Math.random() * */20;
   var id = Math.random();
   var spdX = 5 + Math.random() * 5;
   var spdY = 5 + Math.random() * 5;
@@ -217,8 +217,8 @@ generateForce = function(actor, aimOverwrite) {
   //bullets are drawn according to the position of the character
   var x = actor.x;
   var y = actor.y;
-  var height = 20;
-  var width = 20;
+  var height = 40;
+  var width = 40;
   var id = Math.random();
 //angle is updated when the mouse moves
 //when angle is undefined it will be overwriten by the current position of the mouse
