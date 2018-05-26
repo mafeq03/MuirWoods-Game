@@ -23,12 +23,15 @@ html {
   align-items: center;
   display: flex;
   flex-direction: column;
-  visibility: "visible"   
+  visibility: visible;  
+  position: absolute;
+  margin-left: 650px;
 }
 
 .box2 {
   flex: 1;
   align-items: center;
+
 }
 
 #intro{
@@ -71,10 +74,9 @@ ol {
   background-size: cover;
   border-radius: 15px;
   display: block;
-  margin-left: auto;
   margin-right: auto;
-  
-}
+  margin-left: 560px;
+ }
 
 #GameOver{
   position: absolute;
@@ -85,10 +87,9 @@ ol {
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 15px;
-  margin-left: 460px;
+  margin-left: 530px;
   margin-right: auto;
   
-
  }
 
 .overtext{

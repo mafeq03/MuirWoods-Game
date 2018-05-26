@@ -4,7 +4,7 @@ window.onload = function() {
 };
 
 var ctx = document.getElementById("ctx").getContext("2d");
-ctx.font = "30px Arial";
+ctx.font = "30px Sans";
 ctx.fillStyle = "white";
 //set dimensions of canvas
 var HEIGHT = 600;
@@ -35,6 +35,10 @@ Img.power = new Image();
 Img.power.src = "../images/powerboost.png";
 Img.force = new Image();
 Img.force.src = "../images/heart_.png";
+
+//audio used
+var woods = new Audio("../audio/woods.wav");
+var hearts = new Audio("../audio/collide.wav");
 
 // //launches force used by player by left clicking
 // document.onclick = function(mouse) {
@@ -124,6 +128,7 @@ update = function() {
     for (var key2 in lumberjacks) {
       var isColliding = protectiveForces[key].theCollision(lumberjacks[key2]);
       if (isColliding) {
+         hearts.play();
          delete lumberjacks[key2];
         break;
       }
@@ -162,15 +167,18 @@ update = function() {
   //condition that stops game, game ends when health equals 0
   if (player.hp <= 0) {
     showMenu(gameOverMenu);
+    woods.pause();
+    
     // alert("You didn't make it :(");
     }
   player.update();
   //health and scor are written within the canvas
   ctx.fillText("Health: " + player.hp +"%", 0, 30);
-  ctx.fillText("Score: " + score, 200, 30);
+  ctx.fillText("Score: " + score, 220, 30);
 };
 // function to load new game
 startNewGame = function() {
+  woods.play();
   player.hp = 100;
   frameCount = 0;
   score = 0;
@@ -179,8 +187,7 @@ startNewGame = function() {
   protectiveForces = {};
   generateLumberjacks();
   generateLumberjacks();
-  generateLumberjacks();
-};
+  };
 
 document.getElementById("start").onclick = function() {
  //player is called as soon as new game is generated

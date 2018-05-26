@@ -5,7 +5,7 @@ var plants = {};
 var protectiveForces = {};
 //constructor to create character with all traits and functions as methods
 Player = function() {
-  var character = Actor("player", "myId", 20, 400, 30, 5, 70, 140, Img.player, 100, 1);
+  var character = Actor("player", "myId", 20, 400, 30, 5, 80, 150, Img.player, 100, 1);
 //updates position of character
   character.updatePosition = function() {
     if (character.goRight) 
@@ -146,7 +146,7 @@ Actor = function(type, id, x, y, spdX, spdY, width, height, img, hp, atkSpd) {
 
 //constructor for the obstacles/lumberjack
 Lumberjack = function(id, x, y, spdX, spdY, width, height) {
-  var character = Actor("Lumberjack", id, x, y, spdX, spdY, width, height, Img.lumberjack, 10, 1);
+  var character = Actor("Lumberjack", id, x, y, spdX, spdY, width, height, Img.lumberjack, 100, 1);
   //generated lumberjacks will be added to the object lumberjacks
   lumberjacks[id] = character;
 };
@@ -157,11 +157,11 @@ generateLumberjacks = function() {
   //the results are multiplied by the canvas' dimensions
   var x = Math.random() * WIDTH;
   var y = Math.random() * HEIGHT;
-  var height = /*10 + Math.random() * */20; //between 10 and 30
-  var width = /*10 + Math.random() * */20;
+  var height = /*10 + Math.random() * */60; //between 10 and 30
+  var width = /*10 + Math.random() * */50;
   var id = Math.random();
-  var spdX = 5 + Math.random() * 5;
-  var spdY = 5 + Math.random() * 5;
+  var spdX = 5 + Math.random() * 2;
+  var spdY = 5 + Math.random() * 2;
   Lumberjack(id, x, y, spdX, spdY, width, height);
 };
 //defines the specific properties for the plants in woods
@@ -180,8 +180,8 @@ generatePlant = function() {
   //Math.random() gives random number then multiplied by canvas' dimensions
   var x = Math.random() * WIDTH;
   var y = Math.random() * HEIGHT;
-  var height = 10;
-  var width = 10;
+  var height = 60;
+  var width = 20;
   var id = Math.random();
   var spdX = 0;
   var spdY = 0;
